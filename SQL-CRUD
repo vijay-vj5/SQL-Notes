@@ -1,0 +1,85 @@
+What is a database?
+ Ans -Database is the collection of organized data which is structured and is stored electronically on a computer system. Databases can store data in the form of tables depending upon the type of database. The database's primary goal is to store a huge amount of data.
+ Databases are used to store a large number of dynamic websites on the Internet today. Data can then be accessed, managed, updated, regulated, and organized efficiently. For writing and retrieving data, most databases utilize structured query language (SQL).
+Examples of some databases: MySQL, Oracle, MongoDB, PostgreSQL, SQL Server, etc.</p>
+
+Creating a Database:
+To create a new database in MySQL, you use the CREATE DATABASE statement with the following syntax:
+syntax:
+    CREATE DATABASE [IF NOT EXISTS] database_name
+    [CHARACTER SET charset_name]
+    [COLLATE collation_name]
+    
+Droping a Database:
+The DROP DATABASE statement drops all tables in the database and deletes the database permanently. Therefore, you need to be very careful when using this statement.
+ syntax of the DROP DATABASE statement:
+        DROP DATABASE [IF EXISTS] database_name;
+        
+Tables in mySQL:
+A table is used to organize data in the form of rows and columns and used for both storing and displaying records in the structure format. It is similar to worksheets in the spreadsheet application. 
+
+Creating a Table:
+The CREATE TABLE statement allows you to create a new table in a database.
+
+ the basic syntax of the CREATE TABLE  statement:
+
+CREATE TABLE [IF NOT EXISTS] table_name(
+   column_1_definition,
+   column_2_definition,
+   ...,
+   table_constraints
+) 
+
+Droping a Table:
+To remove existing tables, you use the MySQL DROP TABLE statement.
+
+syntax of the DROP TABLE statement:
+
+DROP [TEMPORARY] TABLE [IF EXISTS] table_name [, table_name] ...
+[RESTRICT | CASCADE]
+
+SELECT statement:
+The SELECT statement allows you to select data from one or more tables. To write a  SELECT  statement in MySQL, you use this syntax:
+
+SELECT select_list
+FROM table_name;
+
+ORDER BY statement:
+When you use the SELECT statement to query data from a table, the order of rows in the result set is unspecified. To sort the rows in the result set, you add the ORDER BY clause to the SELECT statement.
+
+the syntax of the ORDER BY clause:
+
+SELECT
+   select_list
+FROM
+   table_name
+ORDER BY
+   column1 [ASC|DESC],
+   column2 [ASC|DESC],
+   ...;
+   
+INSERT statement:
+The INSERT statement allows you to insert one or more rows into a table. The following illustrates the syntax of the INSERT statement:
+
+INSERT INTO table(c1,c2,...)
+VALUES (v1,v2,...);
+
+UPDATE statement:
+The UPDATE statement updates data in a table. It allows you to change the values in one or more columns of a single row or multiple rows.
+
+basic syntax of the UPDATE statement:
+
+UPDATE [LOW_PRIORITY] [IGNORE] table_name
+SET
+    column_name1 = expr1,
+    column_name2 = expr2,
+    ...
+[WHERE
+    condition];
+    
+    DELETE statement:
+To delete data from a table, you use the MySQL DELETE statement. 
+syntax of the DELETE statement:
+
+DELETE FROM table_name
+WHERE condition;
