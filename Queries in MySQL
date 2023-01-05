@@ -1,0 +1,117 @@
+Join Operator
+A JOIN clause is used to combine rows from two or more tables, based on a related column between them. The types of JOIN operations can be classified as :
+
+Inner Join:
+The simplest join type is INNER JOIN. The INNER JOIN results with a set of records that satisfy the given condition in joined tables. It matches each row in one table with every row in other tables and allows users to query rows containing columns from both tables.
+
+The syntax for an INNER JOIN is:
+
+SELECT table1.column1, table1.column2, table2.column1, ...
+FROM table1
+INNER JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+Left Join:
+The LEFT JOIN (or LEFT OUTER JOIN) returns all records from the table on the left side of the join and matching records from the table on the right side of the join. If there are rows for which there are no matching rows on the right-side table, the result value displayed is NULL.
+
+The syntax for LEFT JOIN is:
+
+SELECT table1.column1, table1.column2, table2.column1, ...
+FROM table1
+LEFT JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+Right Join:
+
+The RIGHT JOIN (RIGHT OUTER JOIN) is essentially the reverse of LEFT OUTER JOIN.
+
+The RIGHT JOIN returns all records from the table on the right side of the join and matching records from the table on the left side of the join. If there are rows for which there are no matching rows on the left-side table, the result value displayed is NULL.
+
+The syntax for RIGHT JOIN is:
+
+SELECT table1.column1,table1.column2,table2.column1,....
+FROM table1
+RIGHT JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+Cross Join:
+
+The CROSS JOIN (also called CARTESIAN JOIN) joins each row of one table to every row of another table. The CROSS JOIN happens when the matching column or the WHERE condition are not specified. The result-set of a CROSS JOIN  is the product of the number of rows of the joined tables.
+
+Use CROSS JOIN when you want a combination of every row from two tables. CROSS JOIN is useful when you want to make a combination of items, for example, colors or sizes.
+
+The syntax for CROSS JOINis:
+
+SELECT table1.column1, table1.column2, table2.column1, ...
+FROM table1
+CROSS JOIN table2;
+
+Union Operator:
+The UNION operator is used to combine the result-set of two or more SELECT statements.
+
+Every SELECT statement within UNION must have the same number of columns
+The columns must also have similar data types
+The columns in every SELECT statement must also be in the same order
+
+Syntax :
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+
+UNION ALL:
+
+The UNIONoperator selects only distinct values by default. To allow duplicate values, use UNION ALL :
+
+SELECT column_name(s) FROM table1
+UNION ALL
+SELECT column_name(s) FROM table2;
+
+Implementing FULL OUTER JOIN Using UNION:
+
+We can use a combination of LEFT JOIN, UNION ALL, and RIGHT JOIN, which outputs a union of table 1 and table 2, returning all records from both tables. The columns existing only in one table will be displayed as NULL in the opposite table.
+
+The syntax is:
+
+SELECT * FROM table1
+LEFT JOIN table2 ON table1.matching_column = table2.matching_column
+UNION ALL
+SELECT * FROM table1
+RIGHT JOIN table2 ON table1.matching_column = table2.matching_column
+
+        MySQL Triggers
+       
+What is a Trigger in MySQL?
+    A trigger is a named MySQL object that activates when an event occurs in a table. Triggers are a particular type of stored procedure associated with a specific table.
+Triggers allow access to values from the table for comparison purposes using NEW and OLD. The availability of the modifiers depends on the trigger event you use:
+Using MySQL Triggers
+Every trigger associated with a table has a unique name and function based on two factors:
+
+1. Time. BEFORE or AFTER a specific row event.
+2. Event. INSERT, UPDATE or DELETE.
+
+Create Triggers
+Use the CREATE TRIGGER statement syntax to create a new trigger:
+
+CREATE TRIGGER <trigger name> <trigger time > <trigger event>
+ON <table name>
+FOR EACH ROW
+<trigger body>;
+
+Delete Triggers
+To delete a trigger, use the DROP TRIGGER ****statement:
+
+DROP TRIGGER <trigger name>;
+// Alternatively, you can use :
+DROP TRIGGER IF EXISTS <trigger name>;
+
+An example trigger to check if an employee’s age is above 18, before inserting the values into DB table would look like the following :
+
+delimiter //
+CREATE TRIGGER person_bi BEFORE INSERT
+ON person
+FOR EACH ROW
+IF NEW.age < 18 THEN
+SIGNAL SQLSTATE '50001' SET MESSAGE_TEXT = 'Person must be older than 18.';
+END IF; //
+delimiter ;
+
